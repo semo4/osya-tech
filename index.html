@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1B2B">
+<title>OSYA Tech</title>
+<meta name="description" content="OSYA Tech builds complete software systems: design, websites, mobile apps, backend and cloud. We build from scratch, develop existing projects, manage cloud and provide outsourced developers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one long agency page — sticky nav, terminal-style hero, service grid, process timeline, engagement cards, FAQ, project request form. Dark-first, brand navy + teal. */
+:root{
+  --bg:#0B1B2B; --surface:#0F2236; --surface-2:#132A42; --line:#1B3753;
+  --fg:#F4F6F8; --muted:#94A3B8; --accent:#14B8A6; --accent-ink:#06201D; --accent-soft:rgba(20,184,166,.12);
+  --amber:#F5A524; --term-bg:#07131F; --term-fg:#E2E8F0; --term-muted:#64748B; --term-accent:#14B8A6; --term-amber:#F5A524;
+  --ok:#22C55E;
+  --f-sans:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-ar:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:14px; --maxw:1160px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  --bg:#F4F6F8; --surface:#FFFFFF; --surface-2:#EAF0F4; --line:#D6E0E8;
+  --fg:#0B1B2B; --muted:#4B5B6E; --accent:#0F766E; --accent-ink:#FFFFFF; --accent-soft:rgba(15,118,110,.09);
+  --amber:#B45309; --ok:#15803D; color-scheme:light } }
+:root[data-theme="light"]{
+  --bg:#F4F6F8; --surface:#FFFFFF; --surface-2:#EAF0F4; --line:#D6E0E8;
+  --fg:#0B1B2B; --muted:#4B5B6E; --accent:#0F766E; --accent-ink:#FFFFFF; --accent-soft:rgba(15,118,110,.09);
+  --amber:#B45309; --ok:#15803D; color-scheme:light }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-sans);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+html[lang="ar"] body{font-family:var(--f-ar);font-size:17px;line-height:1.75}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{line-height:1.2;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+html[lang="ar"] .eyebrow{letter-spacing:.04em}
+.lead{color:var(--muted);font-size:1.08rem;max-width:62ch}
+.sec{padding-block:clamp(64px,9vw,112px)}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:760px}
+.alt{background:var(--surface)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:600;font-size:.98rem;padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-sm{padding:9px 16px;font-size:.9rem}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:baseline;gap:8px;text-decoration:none;flex-shrink:0}
+.logo b{font-family:var(--f-mono);font-weight:700;font-size:1.3rem;letter-spacing:-.02em;color:var(--fg)}
+.logo b span{color:var(--accent)}
+.logo i{font-style:normal;font-size:.7rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--accent)}
+.links{display:flex;gap:4px;margin-inline-start:auto}
+.links a{text-decoration:none;color:var(--muted);font-size:.93rem;font-weight:500;padding:8px 12px;border-radius:8px}
+.links a:hover{color:var(--fg);background:var(--accent-soft)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.lang{font:inherit;font-family:var(--f-ar);font-weight:600;font-size:.9rem;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+html[lang="ar"] .lang{font-family:var(--f-sans)}
+.lang:hover{border-color:var(--accent)}
+.menu-btn{display:none;background:transparent;border:1px solid var(--line);color:var(--fg);border-radius:10px;width:42px;height:40px;cursor:pointer;font-size:1.2rem}
+@media (max-width:960px){
+  .links{display:none;position:absolute;top:68px;inset-inline:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-left,0px)) 16px}
+  .links.open{display:flex}
+  .links a{padding:12px}
+  .menu-btn{display:block}
+  .nav-actions{margin-inline-start:auto}
+  .nav .btn-primary{display:none}
+}
+
+/* hero */
+.hero{padding-block:clamp(48px,8vw,96px) clamp(56px,8vw,96px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.35;mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 10%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 10%,transparent 75%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero-grid>*{min-width:0}
+.hero h1{font-size:clamp(2.3rem,5.4vw,4rem);font-weight:700;letter-spacing:-.025em;margin-block:18px 20px}
+html[lang="ar"] .hero h1{letter-spacing:0;line-height:1.3}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.trust{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.chip{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);border:1px solid var(--line);padding:5px 11px;border-radius:999px;background:var(--surface)}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+
+/* terminal */
+.term{background:var(--term-bg);color:var(--term-fg);border:1px solid #1B3753;border-radius:16px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);font-family:var(--f-mono);font-size:.84rem;line-height:1.7;overflow:hidden;direction:ltr;text-align:left}
+.term-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid #16304A}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:#1E3A55}
+.term-bar span{margin-inline-start:10px;color:var(--term-muted);font-size:.76rem}
+.term pre{margin:0;padding:18px 20px 22px;white-space:pre-wrap;word-break:break-word;font:inherit;min-height:330px}
+.t-m{color:var(--term-muted)} .t-a{color:var(--term-accent)} .t-y{color:var(--term-amber)} .t-g{color:#4ADE80}
+.cursor{display:inline-block;width:8px;height:1.05em;background:var(--term-accent);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:18px}
+.svc{display:flex;flex-direction:column;gap:12px;padding:26px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);transition:border-color .2s ease,transform .2s ease}
+.alt .svc{background:var(--bg)}
+.svc:hover{border-color:var(--accent);transform:translateY(-2px)}
+.svc-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.svc-ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--f-mono);font-weight:700;font-size:.9rem}
+.svc p{color:var(--muted);font-size:.97rem}
+.svc .gain{color:var(--fg);font-size:.93rem;padding-top:12px;margin-top:auto;border-top:1px dashed var(--line)}
+.svc .gain b{color:var(--accent);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);background:var(--surface-2);padding:3px 9px;border-radius:6px;direction:ltr}
+
+/* paths */
+.path-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.path{display:flex;flex-direction:column;gap:12px;padding:26px 24px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);transition:border-color .2s ease,transform .2s ease}
+.path:hover{border-color:var(--accent);transform:translateY(-2px)}
+.path .code{font-family:var(--f-mono);font-size:.78rem;color:var(--amber);direction:ltr;align-self:flex-start}
+.path p{color:var(--muted);font-size:.95rem}
+.path ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:.92rem}
+.path li{display:flex;gap:9px}
+.path li::before{content:"→";color:var(--accent);flex-shrink:0}
+html[dir="rtl"] .path li::before{content:"←"}
+.path a{margin-top:auto;padding-top:10px;color:var(--accent);font-weight:600;text-decoration:none;font-size:.95rem}
+.path a:hover{text-decoration:underline}
+@media (max-width:1000px){.path-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.path-grid{grid-template-columns:1fr}}
+
+/* audiences */
+.aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.aud{padding:28px 24px;display:grid;gap:10px;align-content:start;border-inline-end:1px solid var(--line)}
+.aud:last-child{border-inline-end:0}
+.aud .who{font-family:var(--f-mono);font-size:.78rem;color:var(--amber);letter-spacing:.06em}
+.aud p{color:var(--muted);font-size:.95rem}
+@media (max-width:900px){.aud-grid{grid-template-columns:1fr 1fr}.aud:nth-child(2){border-inline-end:0}.aud:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:560px){.aud-grid{grid-template-columns:1fr}.aud{border-inline-end:0;border-bottom:1px solid var(--line)}.aud:last-child{border-bottom:0}}
+
+/* process */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:s}
+.step{position:relative;display:grid;gap:10px;align-content:start;padding-top:56px}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:0;inset-inline-start:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-weight:700;font-size:.85rem;background:var(--bg);border:1.5px solid var(--accent);color:var(--accent)}
+.step::after{content:"";position:absolute;top:20px;inset-inline-start:48px;inset-inline-end:-8px;height:1.5px;background:linear-gradient(90deg,var(--accent),var(--line))}
+html[dir="rtl"] .step::after{background:linear-gradient(270deg,var(--accent),var(--line))}
+.step:last-child::after{display:none}
+.step p{color:var(--muted);font-size:.94rem}
+.step .api{font-family:var(--f-mono);font-size:.74rem;color:var(--amber);direction:ltr;justify-self:start}
+@media (max-width:980px){.steps{grid-template-columns:1fr;gap:0}.step{padding:0 0 32px;padding-inline-start:60px}.step::after{top:46px;bottom:6px;inset-inline-start:19px;inset-inline-end:auto;width:1.5px;height:auto;background:var(--line)}html[dir="rtl"] .step::after{background:var(--line)}}
+
+/* engagement */
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.eng{display:flex;flex-direction:column;gap:14px;padding:28px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.eng.feat{border-color:var(--accent);background:linear-gradient(180deg,var(--accent-soft),transparent 60%),var(--surface)}
+.eng .best{font-size:.85rem;color:var(--muted)}
+.eng ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.95rem}
+.eng li{display:flex;gap:10px}
+.eng li::before{content:"✓";color:var(--accent);font-weight:700;flex-shrink:0}
+.eng .btn{margin-top:auto}
+.badge{align-self:flex-start;font-family:var(--f-mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:4px 10px;border-radius:999px}
+.free{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;border:1px dashed var(--accent);border-radius:var(--r)}
+.free p{color:var(--muted)}
+.free strong{color:var(--fg);display:block;font-size:1.05rem}
+@media (max-width:900px){.eng-grid{grid-template-columns:1fr}}
+
+/* promises */
+.prom-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 36px}
+.prom{display:grid;gap:8px}
+.prom .k{font-family:var(--f-mono);font-size:.8rem;color:var(--accent)}
+.prom p{color:var(--muted);font-size:.95rem}
+@media (max-width:900px){.prom-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prom-grid{grid-template-columns:1fr}}
+
+/* courses + about */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.split>*{min-width:0}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+.topics{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.topics span{font-size:.88rem;border:1px solid var(--line);padding:6px 12px;border-radius:999px;background:var(--bg)}
+.panel{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);padding:28px;display:grid;gap:18px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fact{display:grid;gap:4px}
+.fact b{font-family:var(--f-mono);font-size:1.4rem;color:var(--fg)}
+.fact span{font-size:.82rem;color:var(--muted)}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:600;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-mono);color:var(--accent);font-size:1.2rem;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 22px 20px;color:var(--muted);max-width:70ch}
+
+/* form */
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+.contact-grid>*{min-width:0}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.channels{display:grid;gap:12px;margin-top:28px}
+.channel{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none}
+.channel:hover{border-color:var(--accent)}
+.channel .ci{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--f-mono);font-weight:700;font-size:.8rem;flex-shrink:0}
+.channel small{display:block;color:var(--muted);font-size:.8rem}
+.channel span{font-weight:600;word-break:break-all}
+form{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:clamp(20px,3vw,34px);display:grid;gap:18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:600px){.row{grid-template-columns:1fr}}
+.field{display:grid;gap:7px;min-width:0}
+label{font-size:.88rem;font-weight:600}
+label .opt{font-weight:400;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:.97rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+textarea{min-height:130px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;padding:0}
+.pills label{font-weight:500;font-size:.88rem;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;background:var(--bg)}
+.pills input:checked+label{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.pills input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+.err{color:#F87171;font-size:.84rem}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.form-foot small{color:var(--muted);font-size:.85rem;max-width:40ch}
+.done{border:1px solid var(--accent);border-radius:18px;background:var(--surface);padding:clamp(28px,4vw,40px) clamp(20px,3vw,34px) clamp(20px,3vw,34px);display:grid;gap:16px;margin-top:24px;scroll-margin-top:110px}
+#reqForm{scroll-margin-top:110px}
+@media (max-width:900px){.contact-grid{gap:56px}.done{margin-top:32px}}
+.done pre{margin:0;background:var(--term-bg);color:var(--term-fg);border-radius:12px;padding:16px 18px;font-family:var(--f-mono);font-size:.8rem;white-space:pre-wrap;word-break:break-word;max-height:280px;overflow:auto}
+.done .acts{display:flex;flex-wrap:wrap;gap:10px}
+.done .note{color:var(--muted);font-size:.9rem}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:40px}
+.foot{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+.foot p{color:var(--muted);font-size:.88rem}
+.foot nav{display:flex;flex-wrap:wrap;gap:18px}
+.foot nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
+.foot nav a:hover{color:var(--accent)}
+body{margin:0}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="OSYA Tech home"><b><span>{</span>OSYA<span>}</span></b><i>Tech</i></a>
+    <nav class="links" id="links">
+      <a href="#paths" data-t="nav.paths">Solutions</a>
+      <a href="#services" data-t="nav.services">Services</a>
+      <a href="#process" data-t="nav.process">How we work</a>
+      <a href="#pricing" data-t="nav.pricing">Working together</a>
+      <a href="#courses" data-t="nav.courses">Courses</a>
+      <a href="#about" data-t="nav.about">About</a>
+      <a href="#faq" data-t="nav.faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang" id="langBtn" type="button" aria-label="Switch language">العربية</button>
+      <a class="btn btn-primary btn-sm" href="#start" data-t="nav.cta">Start a project</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow" data-t="hero.eyebrow">Software development company · Amman, Jordan</div>
+        <h1 data-t="hero.title" data-html>Complete systems,<br><em>explained simply.</em><br>Built right.</h1>
+        <p class="lead" data-t="hero.lead">From the first design to the live app and the cloud it runs on, we build the whole system: UI/UX, websites, mobile apps, backend and infrastructure. We can start from zero, take over and improve an existing project, manage your cloud, or join your team as outsourced developers.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#start" data-t="hero.cta1">Start a project →</a>
+          <a class="btn btn-ghost" href="#services" data-t="hero.cta2">See our services</a>
+        </div>
+        <div class="trust">
+          <span class="chip">UI/UX · Figma</span>
+          <span class="chip">React · Next.js</span>
+          <span class="chip">Flutter · iOS · Android</span>
+          <span class="chip">Python · Go</span>
+          <span class="chip">PostgreSQL · Redis</span>
+          <span class="chip">AWS · GCP · Kubernetes</span>
+        </div>
+      </div>
+      <div class="term" aria-label="Example: a new project request getting accepted">
+        <div class="term-bar"><i></i><i></i><i></i><span>osya.tech — new-project</span></div>
+        <pre id="term"></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="paths">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow" data-t="paths.eyebrow">How we can help</div>
+        <h2 data-t="paths.title">Wherever your project is, we take it from there</h2>
+        <p class="lead" data-t="paths.lead">Pick the situation that sounds like you. Each one leads to the same result: a system that works, that you own, and that you understand.</p>
+      </div>
+      <div class="path-grid" id="pathGrid"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow" data-t="svc.eyebrow">Services</div>
+        <h2 data-t="svc.title">Everything your system needs, in one team</h2>
+        <p class="lead" data-t="svc.lead">Every service is explained in plain words. Take one service or the full package. If you are not sure what you need, describe your idea in the form below and we will tell you.</p>
+      </div>
+      <div class="svc-grid" id="svcGrid"></div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="who">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow" data-t="aud.eyebrow">Who we work with</div>
+        <h2 data-t="aud.title">Different clients, one standard</h2>
+      </div>
+      <div class="aud-grid" id="audGrid"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow" data-t="proc.eyebrow">How we work</div>
+        <h2 data-t="proc.title">From first message to a live system</h2>
+        <p class="lead" data-t="proc.lead">Five clear steps. You know what happens next at every point, and nothing gets built before you approve it.</p>
+      </div>
+      <ol class="steps" id="steps"></ol>
+    </div>
+  </section>
+
+  <section class="sec alt" id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow" data-t="eng.eyebrow">Working together</div>
+        <h2 data-t="eng.title">Pick the way that fits your project</h2>
+        <p class="lead" data-t="eng.lead">Every project gets a written quote before work starts. No hidden costs, and no surprise invoices.</p>
+      </div>
+      <div class="eng-grid" id="engGrid"></div>
+      <div class="free">
+        <div><strong data-t="free.title">Not sure yet? Book a free 30-minute call.</strong><p data-t="free.text">Tell us the idea or the problem. You leave the call with clear next steps, even if you don't hire us.</p></div>
+        <a class="btn btn-ghost" href="#start" data-t="free.cta">Book the free call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="promise">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow" data-t="prom.eyebrow">Our promise</div>
+        <h2 data-t="prom.title">How we serve you the best we can</h2>
+      </div>
+      <div class="prom-grid" id="promGrid"></div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="courses">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow" data-t="crs.eyebrow">OSYA Tech Academy</div>
+        <h2 data-t="crs.title" style="margin-block:14px 16px">Learn backend the way it is built in real companies</h2>
+        <p class="lead" data-t="crs.lead">Practical backend courses in Arabic, with tech terms kept in English so you can search and work with them. For students, junior developers, and company teams that want hands-on training.</p>
+        <div class="topics" id="topics"></div>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#start" data-pick="training" data-t="crs.cta1">Join the course waitlist</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/osya.tech/" target="_blank" rel="noopener" data-t="crs.cta2">Free lessons on Instagram</a>
+        </div>
+      </div>
+      <div class="term" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><span>lesson-07 — caching.md</span></div>
+<pre style="min-height:0"><span class="t-m"># Lesson 7: Why your app is slow</span>
+
+<span class="t-a">GET</span> /products     <span class="t-y">→ 840 ms</span>  <span class="t-m">// every request hits the DB</span>
+
+<span class="t-m"># add a Redis cache with a 60s TTL</span>
+cache.set(<span class="t-g">"products"</span>, rows, ttl=<span class="t-y">60</span>)
+
+<span class="t-a">GET</span> /products     <span class="t-g">→ 12 ms</span>   <span class="t-m">// served from memory</span>
+
+<span class="t-m"># next: when the cache lies to you</span>
+<span class="t-m">#       (and how to fix it)</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow" data-t="about.eyebrow">About OSYA Tech</div>
+        <h2 data-t="about.title" style="margin-block:14px 16px">One team for your whole system</h2>
+        <p class="lead" data-t="about.p1">OSYA Tech was founded by Osama, a senior software engineer with about five years of experience building systems that move real money for real users: investment platforms, payments, crypto and identity verification. Around that core we work with a vetted team of designers, web and mobile developers, and cloud engineers.</p>
+        <p class="lead" data-t="about.p2" style="margin-top:14px">You get one point of contact who owns the whole project, from design to launch, so nothing gets lost between freelancers. We explain every decision in plain words, in Arabic or English, and we treat your data and your business like our own.</p>
+      </div>
+      <div class="panel">
+        <div class="facts">
+          <div class="fact"><b>5+</b><span data-t="about.f1">years building software</span></div>
+          <div class="fact"><b>AR/EN</b><span data-t="about.f2">we work in both</span></div>
+          <div class="fact"><b>100%</b><span data-t="about.f3">code ownership is yours</span></div>
+        </div>
+        <div class="eyebrow" data-t="about.stack">Our toolbox</div>
+        <div class="stack">
+          <span class="tag">Figma</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Flutter</span><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Go</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Elasticsearch</span><span class="tag">RabbitMQ</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">GCP</span><span class="tag">AWS</span><span class="tag">CI/CD</span>
+        </div>
+        <div class="eyebrow" data-t="about.focus">Where we are strongest</div>
+        <div class="stack" id="focus"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow" data-t="faq.eyebrow">FAQ</div>
+        <h2 data-t="faq.title">Questions clients usually ask</h2>
+      </div>
+      <div class="faq" id="faqList"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="start">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow" data-t="form.eyebrow">Start a project</div>
+        <h2 data-t="form.title" style="margin-block:14px 16px">Tell us what you need</h2>
+        <p class="lead" data-t="form.lead">Fill in the form in two minutes. We reply within 24 hours on working days with questions, a free call slot, or a first estimate.</p>
+        <div class="channels" id="channels"></div>
+      </div>
+      <div>
+        <form id="reqForm" novalidate>
+          <div class="row">
+            <div class="field"><label for="f-name" data-t="form.name">Your name</label><input id="f-name" name="fullname" autocomplete="name" required></div>
+            <div class="field"><label for="f-company"><span data-t="form.company">Company</span> <span class="opt" data-t="form.optional">(optional)</span></label><input id="f-company" name="company" autocomplete="organization"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="f-contact" data-t="form.contact">Email or WhatsApp number</label><input id="f-contact" name="contact" required></div>
+            <div class="field"><label for="f-country"><span data-t="form.country">Country</span> <span class="opt" data-t="form.optional">(optional)</span></label><input id="f-country" name="country" autocomplete="country-name"></div>
+          </div>
+          <div class="field">
+            <label for="f-service" data-t="form.service">What do you need help with?</label>
+            <select id="f-service" name="service" required></select>
+          </div>
+          <div class="field">
+            <span class="lbl" style="font-size:.88rem;font-weight:600" data-t="form.budget">Approximate budget</span>
+            <div class="pills" id="budgetPills"></div>
+          </div>
+          <div class="field">
+            <span class="lbl" style="font-size:.88rem;font-weight:600" data-t="form.when">When do you want to start?</span>
+            <div class="pills" id="whenPills"></div>
+          </div>
+          <div class="field">
+            <label for="f-desc" data-t="form.desc">Describe the project or the problem</label>
+            <textarea id="f-desc" name="desc" required data-tp="form.descPh"></textarea>
+          </div>
+          <p class="err" id="formErr" hidden></p>
+          <div class="form-foot">
+            <small data-t="form.privacy">Your details are only used to reply to you. We are happy to sign an NDA before you share sensitive details.</small>
+            <button class="btn btn-primary" type="submit" data-t="form.submit">Prepare my request →</button>
+          </div>
+        </form>
+        <div class="done" id="done" hidden>
+          <div class="eyebrow" data-t="done.eyebrow">Request ready</div>
+          <h3 data-t="done.title">Last step: send it to us</h3>
+          <p class="note" data-t="done.text">Choose how you want to send it. The message below is already written for you.</p>
+          <pre id="msgOut"></pre>
+          <div class="acts" id="sendActs"></div>
+          <p class="note" id="copyNote" hidden></p>
+          <button class="btn btn-ghost btn-sm" type="button" id="editBtn" style="justify-self:start" data-t="done.edit">← Edit request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#top"><b><span>{</span>OSYA<span>}</span></b><i>Tech</i></a>
+    <nav>
+      <a href="#services" data-t="nav.services">Services</a>
+      <a href="#process" data-t="nav.process">How we work</a>
+      <a href="#courses" data-t="nav.courses">Courses</a>
+      <a href="#start" data-t="nav.cta">Start a project</a>
+      <a href="https://www.instagram.com/osya.tech/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <p>© <span id="yr">2026</span> OSYA Tech · <span data-t="foot.tag">Amman, Jordan · Serving Jordan, the Gulf and worldwide</span></p>
+  </div>
+</footer>
+
+<script>
+/* ===== Contact settings: fill these in, empty ones are hidden ===== */
+const CONTACT = {
+  whatsapp: "",                 // international format, digits only, e.g. "9627XXXXXXXX"
+  email: "",                    // e.g. "hello@osyatech.com"
+  instagram: "osya.tech",
+  linkedin: ""                  // full URL to the OSYA Tech or personal LinkedIn page
+};
+
+const PATHS = [
+  {code:"git init", pick:"fullsystem",
+   en:{t:"Build from scratch", d:"You have an idea or a business need, and nothing built yet.", li:["Idea and requirements workshop","UI/UX design you approve first","Web, mobile, backend and cloud","Launch, handover and support"], a:"Start a new project"},
+   ar:{t:"بناء من الصفر", d:"عندك فكرة أو احتياج لشغلك، ولسا ما في شي مبني.", li:["جلسة لفهم الفكرة والمتطلبات","تصميم UI/UX بتوافق عليه أول","ويب، موبايل، Backend وسحابة","إطلاق وتسليم ودعم"], a:"ابدأ مشروع جديد"}},
+  {code:"git clone", pick:"existing",
+   en:{t:"Develop an existing project", d:"You already have an app or website that needs new features, fixes or a rescue.", li:["Code and security audit","Fix bugs and slow pages","Add features and redesign screens","Take over from a previous developer"], a:"Improve my project"},
+   ar:{t:"تطوير مشروع موجود", d:"عندك تطبيق أو موقع شغّال ومحتاج ميزات جديدة أو تصليح أو إنقاذ.", li:["مراجعة الكود والأمان","تصليح الأخطاء والبطء","إضافة ميزات وتجديد الشاشات","استلام المشروع من مطوّر سابق"], a:"طوّر مشروعي"}},
+  {code:"kubectl apply", pick:"cloud",
+   en:{t:"Manage your cloud", d:"Your system is live and you want it fast, secure and always online without the stress.", li:["Setup or migration to AWS / GCP","Monitoring, alerts and backups","Security updates and cost control","Automatic, safe deployments"], a:"Manage my cloud"},
+   ar:{t:"إدارة السحابة", d:"نظامك شغّال وبدك ياه سريع وآمن وشغّال دايماً بدون وجع راس.", li:["تجهيز أو نقل لـ AWS / GCP","مراقبة وتنبيهات ونسخ احتياطي","تحديثات أمان وضبط التكاليف","نشر تلقائي وآمن"], a:"أدِر سحابتي"}},
+  {code:"team.add()", pick:"outsourcing",
+   en:{t:"Outsourcing & dedicated developers", d:"You have a team or a product and need more skilled hands, without hiring full-time.", li:["Dedicated developers, part or full time","Frontend, mobile, backend or DevOps","Work inside your tools and sprints","Scale the team up or down monthly"], a:"Extend my team"},
+   ar:{t:"تعهيد ومطوّرين مخصّصين", d:"عندك فريق أو منتج ومحتاج أيادي خبيرة إضافية، بدون توظيف دائم.", li:["مطوّرين مخصّصين، دوام جزئي أو كامل","Frontend، موبايل، Backend أو DevOps","بيشتغلوا على أدواتك ونظام عملك","زيادة أو تقليل الفريق شهرياً"], a:"وسّع فريقي"}}
+];
+
+const SERVICES = [
+  {id:"design", ic:"◐", tags:["UI/UX","Figma","Prototypes","Design systems"],
+   en:{t:"UI/UX design", d:"Screens your users understand from the first tap. We map the user journey, design every screen, and give you a clickable prototype before any code is written.", g:"You see and test the product before paying to build it."},
+   ar:{t:"تصميم UI/UX", d:"شاشات بيفهمها المستخدم من أول ضغطة. منرسم رحلة المستخدم، منصمّم كل الشاشات، ومنعطيك نموذج تفاعلي قبل ما ننكتب ولا سطر كود.", g:"بتشوف المنتج وبتجرّبه قبل ما تدفع على بنائه."}},
+  {id:"web", ic:"</>", tags:["React","Next.js","Dashboards","E-commerce"],
+   en:{t:"Websites & web apps", d:"Company websites, online stores, customer portals and admin dashboards. Fast, mobile-friendly and built so Google can find you.", g:"A web presence that brings in customers and saves your team time."},
+   ar:{t:"مواقع وتطبيقات ويب", d:"مواقع شركات، متاجر إلكترونية، بوابات عملاء ولوحات تحكم. سريعة، بتشتغل منيح على الموبايل، ومبنية بحيث جوجل يلاقيك.", g:"حضور إلكتروني بيجيب عملاء وبيوفّر وقت فريقك."}},
+  {id:"mobile", ic:"▢", tags:["Flutter","iOS","Android","App Store"],
+   en:{t:"Mobile apps", d:"iOS and Android apps from one codebase, with notifications, payments and maps. We also handle publishing on the App Store and Google Play.", g:"Your app in your customers' pockets, on both stores."},
+   ar:{t:"تطبيقات موبايل", d:"تطبيقات iOS و Android من كود واحد، مع إشعارات ودفع وخرائط. ومنتابع كمان نشرها على App Store و Google Play.", g:"تطبيقك بجيبة عملائك، على المتجرين."}},
+  {id:"backend", ic:"{ }", tags:["Python","Go","PostgreSQL","REST","GraphQL"],
+   en:{t:"Backend, APIs & databases", d:"The engine behind your app: user accounts, data, business rules and the API that the web and mobile apps talk to. Designed to stay fast as you grow.", g:"A system that stays stable when your users multiply."},
+   ar:{t:"Backend و API وقواعد بيانات", d:"المحرّك اللي بشغّل تطبيقك: حسابات المستخدمين، البيانات، منطق العمل، والـ API اللي بتحكي معه تطبيقات الويب والموبايل. مصمّم يضل سريع وانت بتكبر.", g:"نظام بيضل ثابت لما يتضاعف عدد مستخدمينك."}},
+  {id:"fintech", ic:"$", tags:["Payment gateways","Wallets","KYC","Audit logs"],
+   en:{t:"Payments, fintech & KYC", d:"Connect payment gateways, wallets and banks safely, and verify customer identity through trusted providers. No double charges, and every transaction can be traced.", g:"Money moves correctly, and compliance is covered."},
+   ar:{t:"الدفع والأنظمة المالية و KYC", d:"منربط بوابات الدفع والمحافظ والبنوك بأمان، ومنتحقّق من هوية العملاء عبر مزوّدين موثوقين. بدون خصم مكرّر، وكل حركة إلها أثر واضح.", g:"الفلوس بتتحرّك صح، والالتزام التنظيمي مغطّى."}},
+  {id:"cloud", ic:"⎈", tags:["AWS","GCP","Docker","Kubernetes","CI/CD"],
+   en:{t:"Cloud management & DevOps", d:"We set up, migrate and run your servers: automatic deployments, monitoring, backups, security updates and keeping the monthly cloud bill under control.", g:"Your system stays online, and you stop worrying about servers."},
+   ar:{t:"إدارة السحابة و DevOps", d:"منجهّز وننقل ونشغّل سيرفراتك: نشر تلقائي، مراقبة، نسخ احتياطي، تحديثات أمان، وضبط فاتورة السحابة الشهرية.", g:"نظامك بضل شغّال، وانت بترتاح من هم السيرفرات."}},
+  {id:"existing", ic:"↻", tags:["Code audit","Bug fixing","Performance","Modernization"],
+   en:{t:"Existing project development", d:"We review your current app, fix what is broken or slow, add new features, and modernize old code step by step without stopping your business.", g:"Your current investment keeps working and keeps growing."},
+   ar:{t:"تطوير المشاريع الموجودة", d:"منراجع تطبيقك الحالي، منصلّح الخربان والبطيء، منضيف ميزات جديدة، ومنحدّث الكود القديم خطوة بخطوة بدون ما يوقف شغلك.", g:"استثمارك الحالي بضل شغّال وبكبر."}},
+  {id:"outsourcing", ic:"+", tags:["Dedicated developers","Team extension","Monthly"],
+   en:{t:"Outsourcing & dedicated teams", d:"Add skilled developers to your team by the month: frontend, mobile, backend or DevOps. They follow your process, and you skip the cost and time of hiring.", g:"More delivery speed, with no long-term hiring risk."},
+   ar:{t:"التعهيد وفرق العمل المخصّصة", d:"ضيف مطوّرين خبراء لفريقك بالشهر: Frontend، موبايل، Backend أو DevOps. بيشتغلوا على طريقتك، وبتوفّر تكلفة ووقت التوظيف.", g:"سرعة تسليم أعلى، بدون مخاطرة توظيف طويل."}},
+  {id:"training", ic:"↗", tags:["Arabic courses","Workshops","Mentoring"],
+   en:{t:"Courses & team training", d:"Practical courses in Arabic for students and junior developers, and hands-on workshops for company teams on APIs, databases, cloud and system design.", g:"Skills your team can use at work the next day."},
+   ar:{t:"كورسات وتدريب فرق العمل", d:"كورسات عملية بالعربي للطلاب والمطوّرين المبتدئين، وورش عملية لفرق الشركات عن الـ API وقواعد البيانات والسحابة وتصميم الأنظمة.", g:"مهارات بيستعملها فريقك بالشغل من تاني يوم."}}
+];
+
+const AUD = [
+  {who:"BUSINESS OWNERS", en:{t:"You have an idea or a business", d:"We turn it into a working system and explain every step without technical jargon."}, ar:{who:"أصحاب الأعمال", t:"عندك فكرة أو مشروع", d:"منحوّلها لنظام شغّال، ومنشرحلك كل خطوة بدون مصطلحات معقّدة."}},
+  {who:"STARTUPS", en:{t:"You need to launch and grow fast", d:"A complete product, from design to app store, built so you don't rebuild everything after your first thousand users."}, ar:{who:"الشركات الناشئة", t:"بدك تطلق وتكبر بسرعة", d:"منتج كامل من التصميم للمتجر، مبني بحيث ما تعيد بناء كل شي بعد أول ألف مستخدم."}},
+  {who:"COMPANIES & HR", en:{t:"You need extra senior hands", d:"Outsourced developers, a full project delivered for you, or training for your team."}, ar:{who:"الشركات والموارد البشرية", t:"محتاج خبرة إضافية لفريقك", d:"مطوّرين بالتعهيد، مشروع كامل منسلّمه إلك، أو تدريب لفريقك."}},
+  {who:"STUDENTS", en:{t:"You want a job in backend", d:"Courses and mentoring that teach how real systems are built, not only the syntax."}, ar:{who:"الطلاب", t:"بدك تشتغل Backend", d:"كورسات وإرشاد بعلّموك كيف الأنظمة الحقيقية بتنبنى، مش بس قواعد اللغة."}}
+];
+
+const STEPS = [
+  {api:"POST /hello", en:{t:"Free discovery call", d:"30 minutes to understand your goal, your users and your budget."}, ar:{t:"مكالمة تعارف مجانية", d:"30 دقيقة نفهم فيها هدفك ومستخدمينك وميزانيتك."}},
+  {api:"201 Proposal", en:{t:"Written proposal & quote", d:"Scope, timeline and a fixed price in writing. You approve before anything starts."}, ar:{t:"عرض مكتوب وسعر واضح", d:"نطاق العمل والمدة والسعر مكتوبين. ما منبلّش إلا بعد موافقتك."}},
+  {api:"PUT /sprint", en:{t:"Build in short sprints", d:"Work happens in 1–2 week cycles, with a demo and progress update every week."}, ar:{t:"بناء على مراحل قصيرة", d:"الشغل على دورات من أسبوع لأسبوعين، مع عرض وتحديث كل أسبوع."}},
+  {api:"200 Live", en:{t:"Launch & handover", d:"We deploy, test and hand over code, docs and access. Everything is in your name."}, ar:{t:"الإطلاق والتسليم", d:"منرفع النظام ونختبره ونسلّمك الكود والتوثيق وكل الصلاحيات، وكلها باسمك."}},
+  {api:"GET /support", en:{t:"Support after launch", d:"30 days of free fixes, then optional monthly support if you want it."}, ar:{t:"دعم بعد الإطلاق", d:"30 يوم تصليح أخطاء مجاناً، وبعدها دعم شهري اختياري إذا حبيت."}}
+];
+
+const ENG = [
+  {en:{t:"Fixed-price project", best:"Best for: a new system, an MVP, a redesign or a clear feature", li:["Agreed scope and one fixed price","Design approved before development","Pay in milestones, not all upfront","Code, docs and access handed over"], cta:"Get a quote"},
+   ar:{t:"مشروع بسعر ثابت", best:"مناسب لـ: نظام جديد، نسخة أولى MVP، تجديد تصميم أو ميزة واضحة", li:["نطاق متفق عليه وسعر واحد ثابت","التصميم بنعتمد قبل البرمجة","الدفع على مراحل، مش كله مقدّماً","تسليم الكود والتوثيق والصلاحيات"], cta:"اطلب عرض سعر"}},
+  {feat:true, en:{badge:"Most flexible", t:"Dedicated team / outsourcing", best:"Best for: growing products and teams that need more hands", li:["Developers reserved for you monthly","Frontend, mobile, backend or DevOps","Weekly reports and a project lead","Add or remove people month to month"], cta:"Build my team"},
+   ar:{badge:"الأكثر مرونة", t:"فريق مخصّص / تعهيد", best:"مناسب لـ: منتجات وفرق بتكبر ومحتاجة أيادي إضافية", li:["مطوّرين محجوزين إلك بالشهر","Frontend، موبايل، Backend أو DevOps","تقارير أسبوعية ومسؤول مشروع","زيادة أو تقليل الفريق كل شهر"], cta:"ابنِ فريقي"}},
+  {en:{t:"Cloud care & support", best:"Best for: live systems that must stay fast and online", li:["Monthly cloud management plan","Monitoring, backups and security","Bug fixes and small improvements","Consulting and code audits by the hour"], cta:"Talk about a plan"},
+   ar:{t:"رعاية السحابة والدعم", best:"مناسب لـ: أنظمة شغّالة لازم تضل سريعة وأونلاين", li:["خطة شهرية لإدارة السحابة","مراقبة ونسخ احتياطي وأمان","تصليح أخطاء وتحسينات صغيرة","استشارات ومراجعة كود بالساعة"], cta:"خلّينا نحكي عن الخطة"}}
+];
+
+const PROM = [
+  {k:"01 / clarity", en:{t:"Plain-language updates", d:"Weekly updates you can read without a technical background."}, ar:{t:"تحديثات بلغة بسيطة", d:"تحديث أسبوعي بتفهمه حتى لو ما عندك خلفية تقنية."}},
+  {k:"02 / ownership", en:{t:"You own everything", d:"Code, servers, domain and accounts are registered in your name. No lock-in."}, ar:{t:"كل شي ملكك", d:"الكود والسيرفرات والدومين والحسابات كلها باسمك. ما في احتكار."}},
+  {k:"03 / security", en:{t:"Security by default", d:"Hashed passwords, encrypted secrets, access rules and backups from day one."}, ar:{t:"الأمان من البداية", d:"تشفير كلمات السر، حماية المفاتيح، صلاحيات واضحة، ونسخ احتياطي من أول يوم."}},
+  {k:"04 / honesty", en:{t:"Honest estimates", d:"If something will take longer or cost more, you hear it from us first, early."}, ar:{t:"تقديرات صادقة", d:"إذا في شي رح ياخد وقت أو تكلفة أكثر، بتعرف منّا أول وبوقت بكير."}},
+  {k:"05 / quality", en:{t:"Tested and documented", d:"Automated tests and clear docs, so the next developer can continue easily."}, ar:{t:"مختبر وموثّق", d:"اختبارات تلقائية وتوثيق واضح، عشان أي مطوّر بعدنا يكمل بسهولة."}},
+  {k:"06 / privacy", en:{t:"Your data stays private", d:"We sign NDAs on request and never share client work or numbers publicly."}, ar:{t:"بياناتك محمية", d:"منوقّع اتفاقية سرية عند الطلب، وما منشارك شغل العملاء أو أرقامهم بأي مكان."}}
+];
+
+const TOPICS = {en:["Python & FastAPI","Go for backend","Databases & indexes","Redis caching","System design","Payments & idempotency","Docker & CI/CD","Interview prep"],
+                ar:["Python و FastAPI","Go للـ Backend","قواعد البيانات والفهارس","الكاش بـ Redis","تصميم الأنظمة","الدفع والـ Idempotency","Docker و CI/CD","التحضير للمقابلات"]};
+const FOCUS = {en:["Fintech & payments","E-commerce","SaaS platforms","Dashboards & portals","High-traffic systems"], ar:["التكنولوجيا المالية والدفع","التجارة الإلكترونية","منصات SaaS","لوحات تحكم وبوابات","أنظمة بضغط عالي"]};
+
+const FAQ = [
+  {en:["Do you work with clients outside Jordan?","Yes. We are based in Amman and work remotely with clients across Jordan, the Gulf and internationally. Calls happen at a time that suits your time zone."],
+   ar:["بتشتغلوا مع عملاء برّا الأردن؟","أكيد. إحنا بعمّان ومنشتغل عن بُعد مع عملاء بالأردن والخليج وكل العالم، والمكالمات بوقت بناسب توقيتك."]},
+  {en:["How much does a project cost?","It depends on the scope. After the free call you get a written quote with a fixed price or a monthly plan. You know the full cost before any work starts."],
+   ar:["قدّيش بكلّف المشروع؟","حسب حجم الشغل. بعد المكالمة المجانية بيوصلك عرض مكتوب بسعر ثابت أو خطة شهرية، وبتعرف التكلفة كاملة قبل ما نبلّش."]},
+  {en:["How long will it take?","Small integrations or fixes can take days. A full MVP backend usually takes a few weeks. Your proposal includes a timeline with clear milestones."],
+   ar:["قدّيش بياخد وقت؟","ربط خدمة أو تصليح ممكن ياخد أيام، ونظام كامل لنسخة أولى عادة بياخد كم أسبوع. العرض بيكون فيه جدول زمني بمراحل واضحة."]},
+  {en:["Who owns the code when the project ends?","You do. The code, servers, domain and every account are registered in your name, and we hand over full access and documentation."],
+   ar:["لمين الكود بعد ما يخلص المشروع؟","إلك. الكود والسيرفرات والدومين وكل الحسابات باسمك، ومنسلّمك كل الصلاحيات والتوثيق."]},
+  {en:["Can you work on an app another developer started?","Yes. We start with a short code audit, tell you honestly what state it is in, then continue the work or fix what is needed."],
+   ar:["بتقدروا تكملوا على تطبيق بلّش فيه مطوّر ثاني؟","أكيد. منبلّش بمراجعة سريعة للكود، منحكيلك بصراحة وضعه شو، وبعدها منكمّل أو منصلّح اللازم."]},
+  {en:["Do you build the whole system, including design and mobile?","Yes. We deliver the complete system: UI/UX design, website or web app, iOS and Android apps, backend, and the cloud it runs on. You deal with one team and one point of contact."],
+   ar:["بتبنوا النظام كامل، مع التصميم والموبايل؟","أكيد. منسلّم النظام كامل: تصميم UI/UX، موقع أو تطبيق ويب، تطبيقات iOS و Android، الـ Backend، والسحابة اللي بشتغل عليها. بتتعامل مع فريق واحد وشخص واحد مسؤول."]},
+  {en:["How does outsourcing work?","Tell us the skills you need and for how long. We propose developers, you meet them, and they join your tools and daily work. You pay monthly and can scale up or down."],
+   ar:["كيف بيشتغل التعهيد؟","احكيلنا شو المهارات اللي بتحتاجها ولأي مدّة. منرشّحلك مطوّرين، بتقابلهم، وبينضمّوا لأدواتك وشغلك اليومي. الدفع شهري وبتقدر تزيد أو تقلّل."]},
+  {en:["Can you manage the cloud for a system someone else built?","Yes. We start with a review of your servers, costs and security, then take over monitoring, backups, updates and deployments under a monthly plan."],
+   ar:["بتقدروا تديروا السحابة لنظام بناه غيركم؟","أكيد. منبلّش بمراجعة السيرفرات والتكاليف والأمان، وبعدها منستلم المراقبة والنسخ الاحتياطي والتحديثات والنشر بخطة شهرية."]},
+  {en:["Will you sign an NDA?","Yes. We are happy to sign a non-disclosure agreement before you share any sensitive details."],
+   ar:["بتوقّعوا اتفاقية سرّية NDA؟","أكيد، ومنوقّعها قبل ما تشاركنا أي تفاصيل حسّاسة."]}
+];
+
+const BUDGET = {en:["Under $1,000","$1,000 – $3,000","$3,000 – $8,000","$8,000+","Not sure yet"], ar:["أقل من 1,000$","1,000$ – 3,000$","3,000$ – 8,000$","أكثر من 8,000$","مش متأكد بعد"]};
+const WHEN = {en:["As soon as possible","Within a month","In 1–3 months","Just exploring"], ar:["بأسرع وقت","خلال شهر","خلال 1–3 شهور","بستكشف بس"]};
+
+const T = {
+ en:{},
+ ar:{
+  "nav.paths":"الحلول","nav.services":"الخدمات","nav.process":"طريقة العمل","nav.pricing":"طرق التعاون","nav.courses":"الكورسات","nav.about":"من نحن","nav.faq":"أسئلة شائعة","nav.cta":"ابدأ مشروعك",
+  "hero.eyebrow":"شركة تطوير برمجيات · عمّان، الأردن",
+  "hero.title":"أنظمة كاملة،<br><em>نبسّطها ونبنيها صح.</em>",
+  "hero.lead":"من أول تصميم لحد التطبيق الشغّال والسحابة اللي بشتغل عليها، منبني النظام كامل: UI/UX، مواقع، تطبيقات موبايل، Backend وبنية تحتية. منقدر نبلّش من الصفر، أو نستلم مشروعك الموجود ونطوّره، أو ندير سحابتك، أو ننضم لفريقك كمطوّرين بالتعهيد.",
+  "hero.cta1":"ابدأ مشروعك ←","hero.cta2":"شوف خدماتنا",
+  "svc.eyebrow":"الخدمات","svc.title":"كل شي بيحتاجه نظامك، عند فريق واحد","svc.lead":"كل خدمة مشروحة بكلام بسيط. خذ خدمة وحدة أو الباقة كاملة. إذا مش متأكد شو بتحتاج، احكيلنا فكرتك بالفورم تحت وإحنا منحكيلك.",
+  "paths.eyebrow":"كيف منقدر نساعدك","paths.title":"وين ما كان مشروعك، منكمّل منه","paths.lead":"اختار الحالة اللي بتشبهك. كلها بتوصل لنفس النتيجة: نظام شغّال، ملكك، وفاهمه.",
+  "aud.eyebrow":"مع مين منشتغل","aud.title":"عملاء مختلفين، ونفس المستوى للكل",
+  "proc.eyebrow":"طريقة العمل","proc.title":"من أول رسالة لنظام شغّال","proc.lead":"خمس خطوات واضحة. بتعرف شو الخطوة الجاية بكل مرحلة، وما في شي بنبنى قبل موافقتك.",
+  "eng.eyebrow":"طرق التعاون","eng.title":"اختار الطريقة اللي بتناسب مشروعك","eng.lead":"كل مشروع إله عرض سعر مكتوب قبل البداية. بدون تكاليف مخفية وبدون فواتير مفاجئة.",
+  "free.title":"لسا مش متأكد؟ احجز مكالمة مجانية 30 دقيقة.","free.text":"احكيلنا الفكرة أو المشكلة، وبتطلع بخطوات واضحة حتى لو ما اشتغلت معنا.","free.cta":"احجز المكالمة المجانية",
+  "prom.eyebrow":"وعدنا إلك","prom.title":"كيف منخدمك بأفضل شكل",
+  "crs.eyebrow":"أكاديمية OSYA Tech","crs.title":"تعلّم الـ Backend زي ما بنبنى بالشركات الحقيقية","crs.lead":"كورسات Backend عملية بالعربي، مع إبقاء المصطلحات التقنية بالإنجليزي عشان تقدر تبحث فيها وتشتغل فيها. للطلاب والمطوّرين المبتدئين وفرق الشركات اللي بدها تدريب عملي.","crs.cta1":"سجّل بقائمة الانتظار","crs.cta2":"دروس مجانية على إنستغرام",
+  "about.eyebrow":"عن OSYA Tech","about.title":"فريق واحد لنظامك كامل","about.p1":"أسّس OSYA Tech أسامة، مهندس برمجيات أول بخبرة حوالي خمس سنين ببناء أنظمة بتحرّك فلوس حقيقية لمستخدمين حقيقيين: منصات استثمار، أنظمة دفع، كريبتو، والتحقق من الهوية. وحوالين هالخبرة في فريق موثوق من المصمّمين ومطوّري الويب والموبايل ومهندسي السحابة.","about.p2":"بيكون عندك شخص واحد مسؤول عن المشروع كامل من التصميم للإطلاق، فما في شي بيضيع بين الفريلانسرز. منشرح كل قرار بكلام بسيط، بالعربي أو الإنجليزي، ومنتعامل مع بياناتك وشغلك كأنه شغلنا.",
+  "about.f1":"سنين ببناء البرمجيات","about.f2":"منشتغل باللغتين","about.f3":"ملكية الكود إلك","about.stack":"أدواتنا","about.focus":"وين إحنا أقوى",
+  "faq.eyebrow":"أسئلة شائعة","faq.title":"أسئلة بيسألها العملاء عادة",
+  "form.eyebrow":"ابدأ مشروعك","form.title":"احكيلنا شو بتحتاج","form.lead":"عبّي الفورم بدقيقتين. منرد خلال 24 ساعة بأيام العمل بأسئلة، أو موعد مكالمة مجانية، أو تقدير أولي.",
+  "form.name":"اسمك","form.company":"الشركة","form.optional":"(اختياري)","form.contact":"إيميل أو رقم واتساب","form.country":"الدولة","form.service":"شو بتحتاج مساعدة فيه؟","form.budget":"الميزانية التقريبية","form.when":"إيمتى بدك تبلّش؟","form.desc":"اوصف المشروع أو المشكلة","form.descPh":"مثال: عندي متجر إلكتروني وبدّي أربطه ببوابة دفع، والموقع بطيء وقت العروض...","form.privacy":"بياناتك بتنستخدم بس عشان نرد عليك، وجاهزين نوقّع اتفاقية سرية قبل ما تشاركنا تفاصيل حسّاسة.","form.submit":"جهّز طلبي ←",
+  "done.eyebrow":"الطلب جاهز","done.title":"آخر خطوة: ابعتلنا ياه","done.text":"اختار كيف بدك تبعته. الرسالة تحت مكتوبة وجاهزة.","done.edit":"→ عدّل الطلب",
+  "foot.tag":"عمّان، الأردن · منخدم الأردن والخليج والعالم"
+ },
+ en_extra:{"form.descPh":"Example: I run an online store and need a payment gateway connected. The site also gets slow during sales…"},
+ ui:{
+  en:{full:"Full system (design + web/mobile + backend + cloud)", req:"Please fill in your name, how to reach you, the service and a short description.", wa:"Send on WhatsApp", ig:"Send on Instagram", copy:"Copy message", copied:"Copied. Paste it in your message to us.", copyFail:"Select the message above and copy it.", igNote:"Instagram opens a chat with @osya.tech. Paste the copied message there.", mail:"Email", li:"LinkedIn", wa2:"WhatsApp", ig2:"Instagram", chWa:"Fastest reply", chIg:"Send us a DM", chMail:"For detailed briefs", chLi:"Connect with us", pick:"Choose a service", unsure:"I'm not sure, please advise", call:"Free 30-minute call",
+      h:"New project request — OSYA Tech", fName:"Name", fCo:"Company", fContact:"Contact", fCountry:"Country", fSvc:"Service", fBud:"Budget", fWhen:"Start", fDesc:"Details"},
+  ar:{full:"نظام كامل (تصميم + ويب/موبايل + Backend + سحابة)", req:"عبّي اسمك وطريقة التواصل والخدمة ووصف قصير لو سمحت.", wa:"ابعت على واتساب", ig:"ابعت على إنستغرام", copy:"انسخ الرسالة", copied:"تم النسخ. الصقها برسالتك إلنا.", copyFail:"حدّد الرسالة فوق وانسخها.", igNote:"إنستغرام بيفتح محادثة مع @osya.tech. الصق الرسالة المنسوخة هناك.", mail:"الإيميل", li:"لينكدإن", wa2:"واتساب", ig2:"إنستغرام", chWa:"أسرع رد", chIg:"ابعتلنا رسالة", chMail:"للتفاصيل الطويلة", chLi:"تواصل معنا", pick:"اختار الخدمة", unsure:"مش متأكد، ساعدوني أختار", call:"مكالمة مجانية 30 دقيقة",
+      h:"طلب مشروع جديد — OSYA Tech", fName:"الاسم", fCo:"الشركة", fContact:"التواصل", fCountry:"الدولة", fSvc:"الخدمة", fBud:"الميزانية", fWhen:"البداية", fDesc:"التفاصيل"}
+ }
+};
+
+const $ = s => document.querySelector(s);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let lang = "en";
+try { const s = localStorage.getItem("osya-lang"); if (s === "ar" || s === "en") lang = s; } catch(e) {}
+
+// capture English originals from the markup
+document.querySelectorAll("[data-t]").forEach(n => { T.en[n.dataset.t] = n.innerHTML; });
+Object.assign(T.en, T.en_extra);
+
+function render(){
+  const L = lang, ui = T.ui[L];
+  document.documentElement.lang = L;
+  document.documentElement.dir = L === "ar" ? "rtl" : "ltr";
+  $("#langBtn").textContent = L === "ar" ? "English" : "العربية";
+  document.querySelectorAll("[data-t]").forEach(n => { const v = T[L][n.dataset.t] ?? T.en[n.dataset.t]; if (v != null) n.innerHTML = v; });
+  document.querySelectorAll("[data-tp]").forEach(n => { n.placeholder = T[L][n.dataset.tp] ?? T.en[n.dataset.tp]; });
+
+  const pgd = $("#pathGrid"); pgd.innerHTML = "";
+  PATHS.forEach(p => { const c = p[L]; pgd.appendChild(el("article","path",`<span class="code">$ ${p.code}</span><h3>${c.t}</h3><p>${c.d}</p><ul>${c.li.map(x=>`<li>${x}</li>`).join("")}</ul><a href="#start" data-pick="${p.pick}">${c.a} ${L==="ar"?"←":"→"}</a>`)); });
+
+  const sg = $("#svcGrid"); sg.innerHTML = "";
+  SERVICES.forEach(s => { const c = s[L]; const card = el("article","svc");
+    card.innerHTML = `<div class="svc-top"><div class="svc-ic">${esc(s.ic)}</div></div><h3>${c.t}</h3><p>${c.d}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><p class="gain"><b>${L==="ar"?"النتيجة:":"You get:"}</b> ${c.g}</p>`;
+    sg.appendChild(card); });
+
+  const ag = $("#audGrid"); ag.innerHTML = "";
+  AUD.forEach(a => { const c = a[L]; ag.appendChild(el("div","aud",`<span class="who">${L==="ar"?a.ar.who:a.who}</span><h3>${c.t}</h3><p>${c.d}</p>`)); });
+
+  const st = $("#steps"); st.innerHTML = "";
+  STEPS.forEach(s => { const c = s[L]; st.appendChild(el("li","step",`<span class="api">${s.api}</span><h3>${c.t}</h3><p>${c.d}</p>`)); });
+
+  const eg = $("#engGrid"); eg.innerHTML = "";
+  ENG.forEach(e => { const c = e[L]; const card = el("div","eng"+(e.feat?" feat":""));
+    card.innerHTML = `${c.badge?`<span class="badge">${c.badge}</span>`:""}<h3>${c.t}</h3><p class="best">${c.best}</p><ul>${c.li.map(x=>`<li>${x}</li>`).join("")}</ul><a class="btn ${e.feat?"btn-primary":"btn-ghost"}" href="#start">${c.cta}</a>`;
+    eg.appendChild(card); });
+
+  const pg = $("#promGrid"); pg.innerHTML = "";
+  PROM.forEach(p => { const c = p[L]; pg.appendChild(el("div","prom",`<span class="k">${p.k}</span><h3>${c.t}</h3><p>${c.d}</p>`)); });
+
+  $("#topics").innerHTML = TOPICS[L].map(t=>`<span>${t}</span>`).join("");
+  $("#focus").innerHTML = FOCUS[L].map(t=>`<span class="tag" style="direction:inherit">${t}</span>`).join("");
+
+  const fq = $("#faqList"); fq.innerHTML = "";
+  FAQ.forEach((f,i) => { const [q,a] = f[L]; const d = el("details"); if (i===0) d.open = true; d.innerHTML = `<summary>${q}</summary><p>${a}</p>`; fq.appendChild(d); });
+
+  // form options (keep selections across language switches by index)
+  const sel = $("#f-service"); const prev = sel.value;
+  sel.innerHTML = `<option value="" disabled ${prev?"":"selected"}>${ui.pick}</option><option value="fullsystem">${ui.full}</option>` +
+    SERVICES.map(s=>`<option value="${s.id}">${s[L].t}</option>`).join("") +
+    `<option value="call">${ui.call}</option><option value="unsure">${ui.unsure}</option>`;
+  if (prev) sel.value = prev;
+  pills("#budgetPills","budget",BUDGET[L]); pills("#whenPills","when",WHEN[L]);
+
+  renderChannels();
+  if (!$("#done").hidden) buildMessage();
+}
+
+function pills(sel, name, items){
+  const box = $(sel); const cur = box.querySelector("input:checked")?.value; box.innerHTML = "";
+  items.forEach((t,i) => { const id = `f-${name}-${i}`;
+    box.insertAdjacentHTML("beforeend", `<input type="radio" name="${name}" id="${id}" value="${i}" ${String(i)===cur?"checked":""}><label for="${id}">${t}</label>`); });
+}
+
+function renderChannels(){
+  const ui = T.ui[lang], box = $("#channels"); box.innerHTML = "";
+  const add = (href, ic, small, label) => { const a = el("a","channel"); a.href = href; a.target = "_blank"; a.rel = "noopener";
+    a.innerHTML = `<span class="ci">${ic}</span><div><small>${small}</small><span>${esc(label)}</span></div>`; box.appendChild(a); };
+  if (CONTACT.instagram) add(`https://www.instagram.com/${CONTACT.instagram}/`, "IG", `${ui.ig2} · ${ui.chIg}`, "@" + CONTACT.instagram);
+  if (CONTACT.linkedin) add(CONTACT.linkedin, "in", `${ui.li} · ${ui.chLi}`, "OSYA Tech");
+}
+
+let message = "";
+function buildMessage(){
+  const ui = T.ui[lang], f = $("#reqForm");
+  const svcOpt = $("#f-service").selectedOptions[0];
+  const b = f.querySelector("input[name=budget]:checked"), w = f.querySelector("input[name=when]:checked");
+  const co = f.company.value.trim(), ct = f.country.value.trim();
+  const lines = [ui.h, "",
+    `${ui.fName}: ${f.fullname.value.trim()}`,
+    co ? `${ui.fCo}: ${co}` : null,
+    `${ui.fContact}: ${f.contact.value.trim()}`,
+    ct ? `${ui.fCountry}: ${ct}` : null,
+    `${ui.fSvc}: ${svcOpt ? svcOpt.textContent : ""}`,
+    b ? `${ui.fBud}: ${BUDGET[lang][b.value]}` : null,
+    w ? `${ui.fWhen}: ${WHEN[lang][w.value]}` : null,
+    "", `${ui.fDesc}:`, f.desc.value.trim()];
+  message = lines.filter(x => x !== null).join("\n");
+  $("#msgOut").textContent = message;
+
+  const acts = $("#sendActs"); acts.innerHTML = "";
+  if (CONTACT.instagram) { const a = el("a", CONTACT.whatsapp ? "btn btn-ghost" : "btn btn-primary"); a.href = `https://ig.me/m/${CONTACT.instagram}`; a.target="_blank"; a.rel="noopener"; a.textContent = ui.ig;
+    a.addEventListener("click", () => { copy(true); }); acts.appendChild(a); }
+  if (CONTACT.email) { const a = el("a","btn btn-ghost"); a.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(ui.h)}&body=${encodeURIComponent(message)}`; a.textContent = ui.mail; acts.appendChild(a); }
+  const c = el("button","btn btn-ghost"); c.type = "button"; c.textContent = ui.copy; c.addEventListener("click", () => copy(false)); acts.appendChild(c);
+}
+
+function copy(fromIg){
+  const ui = T.ui[lang], note = $("#copyNote");
+  const ok = () => { note.textContent = fromIg ? ui.igNote : ui.copied; note.hidden = false; };
+  const fail = () => { const r = document.createRange(); r.selectNodeContents($("#msgOut")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); note.textContent = ui.copyFail; note.hidden = false; };
+  try { navigator.clipboard.writeText(message).then(ok, fail); } catch(e) { fail(); }
+}
+
+$("#reqForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, err = $("#formErr");
+  if (!f.fullname.value.trim() || !f.contact.value.trim() || !f.service.value || !f.desc.value.trim()) { err.textContent = T.ui[lang].req; err.hidden = false; return; }
+  err.hidden = true; buildMessage(); f.hidden = true; $("#copyNote").hidden = true; $("#done").hidden = false;
+  $("#done").scrollIntoView({behavior:"smooth", block:"start"});
+});
+$("#editBtn").addEventListener("click", () => { $("#done").hidden = true; $("#reqForm").hidden = false; $("#reqForm").scrollIntoView({behavior:"smooth", block:"start"}); });
+
+// keep an unsent draft for this visitor
+const DRAFT_KEY = "osya-draft";
+try { const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); if (d) ["fullname","company","contact","country","desc"].forEach(k => { if (d[k]) $("#reqForm")[k].value = d[k]; }); } catch(e) {}
+$("#reqForm").addEventListener("input", () => { try { const f = $("#reqForm"); localStorage.setItem(DRAFT_KEY, JSON.stringify({fullname:f.fullname.value,company:f.company.value,contact:f.contact.value,country:f.country.value,desc:f.desc.value})); } catch(e) {} });
+
+$("#langBtn").addEventListener("click", () => { lang = lang === "en" ? "ar" : "en"; try { localStorage.setItem("osya-lang", lang); } catch(e) {} render(); });
+$("#menuBtn").addEventListener("click", () => { const l = $("#links"); const o = l.classList.toggle("open"); $("#menuBtn").setAttribute("aria-expanded", o); });
+$("#links").addEventListener("click", e => { if (e.target.tagName === "A") { $("#links").classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded","false"); } });
+document.addEventListener("click", e => { const p = e.target.closest("[data-pick]"); if (p) $("#f-service").value = p.dataset.pick; });
+$("#yr").textContent = new Date().getFullYear();
+
+// hero terminal: request -> response
+const TERM_FULL = [
+  ['<span class="t-m">$ </span>', 0],
+  ['curl -X POST https://osya.tech/projects \\\n', 1],
+  ['  -d \'{"goal":"launch my app",\n', 1],
+  ['       "needs":["design","web","mobile",\n', 1],
+  ['                "backend","cloud"]}\'\n\n', 1],
+  ['<span class="t-g">HTTP/1.1 201 Created</span>\n', 0],
+  ['<span class="t-m">{</span>\n', 0],
+  ['  <span class="t-a">"status"</span>: <span class="t-y">"accepted"</span>,\n', 0],
+  ['  <span class="t-a">"reply_within"</span>: <span class="t-y">"24h"</span>,\n', 0],
+  ['  <span class="t-a">"next_step"</span>: <span class="t-y">"free discovery call"</span>,\n', 0],
+  ['  <span class="t-a">"quote"</span>: <span class="t-y">"fixed, in writing"</span>,\n', 0],
+  ['  <span class="t-a">"code_owner"</span>: <span class="t-y">"you"</span>\n', 0],
+  ['<span class="t-m">}</span>\n', 0]
+];
+(function term(){
+  const pre = $("#term");
+  const all = TERM_FULL.map(x=>x[0]).join("");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  pre.innerHTML = all + '<span class="cursor"></span>';            // complete at rest
+  if (reduce) return;
+  let i = 0, out = "";
+  pre.innerHTML = '<span class="cursor"></span>';
+  function next(){
+    if (i >= TERM_FULL.length) return;
+    const [chunk, typed] = TERM_FULL[i++];
+    if (!typed) { out += chunk; pre.innerHTML = out + '<span class="cursor"></span>'; setTimeout(next, 120); return; }
+    let j = 0; (function type(){ out += chunk[j++]; pre.innerHTML = out + '<span class="cursor"></span>'; if (j < chunk.length) setTimeout(type, 18); else setTimeout(next, 160); })();
+  }
+  setTimeout(next, 300);
+})();
+
+render();
+</script>
+</body>
+</html>
